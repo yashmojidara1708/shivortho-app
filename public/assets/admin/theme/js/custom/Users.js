@@ -7,11 +7,11 @@ $(document).ready(function() {
     $("#hid").val("");
 
     $("#Add_Users_details").on("hidden.bs.modal", function() {
-        $("#Add_Users")[0].reset();
+        $("#UserForm")[0].reset();
         $("#hid").val("");
-        $("#Add_Users").validate().resetForm();
+        $("#UserForm").validate().resetForm();
         $("#status").val("").change();
-        $("#Add_Users").find('.error').removeClass('error');
+        $("#UserForm").find('.error').removeClass('error');
         $("#oldimgbox").hide();
         $('.password-container').show();
     });
