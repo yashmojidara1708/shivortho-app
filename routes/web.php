@@ -23,4 +23,11 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::post('/users/save', [App\Http\Controllers\Admin\UsersController::class, 'save'])->name('save.users');
     Route::get('/users/edit', [App\Http\Controllers\Admin\UsersController::class, 'edit'])->name('edit.users');
     Route::post('/users/delete', [App\Http\Controllers\Admin\UsersController::class, 'delete'])->name('delete.users');
+
+    // staff
+    Route::get('/course', [App\Http\Controllers\Admin\CourseController::class, 'index'])->name('admin.course');
+    Route::post('/courselist', [App\Http\Controllers\Admin\CourseController::class, 'courselist'])->name('admin.courselist');
+    Route::post('/course/save', [App\Http\Controllers\Admin\CourseController::class, 'save'])->name('save.course');
+    Route::get('/course/edit', [App\Http\Controllers\Admin\CourseController::class, 'edit'])->name('edit.course');
+    Route::post('/course/delete', [App\Http\Controllers\Admin\CourseController::class, 'delete'])->name('delete.course');
 });

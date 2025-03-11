@@ -17,6 +17,12 @@
             'label' => 'Users',
             'roles' => null,
         ],
+        [
+            'route' => 'admin.course',
+            'icon' => 'fa-solid fa-book',
+            'label' => 'Courses',
+            'roles' => null,
+        ],
     ];
 
     // Separate the "Dashboard" menu item

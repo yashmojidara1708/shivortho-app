@@ -155,6 +155,9 @@
     <!-- Select2 JS -->
     <script src="{{ asset('assets/admin/theme/js/select2.min.js') }}"></script>
 
+    <script src="//cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+    <script src="{{ asset('assets/admin/theme/cdnFiles/ckeditor.js') }}"></script>
+
     <!-- Datatables JS -->
     <script src="{{ asset('assets/admin/theme/plugins/datatables/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/admin/theme/plugins/datatables/datatables.min.js') }}"></script>
