@@ -1,35 +1,26 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Auth::routes(['reset' => false, 'verify' => false, 'confirm' => false]);
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
+Route::any('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('admin');
+Route::any('/admin/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
+Route::any('/check/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::any('/admin/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('admin.logout');
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
+
+Route::middleware(['admin'])->prefix('admin')->group(function () {
+    Route::get('/home', [DashboardController::class, 'index'])->name('admin.home');
+
+    // staff
+    Route::get('/users', [App\Http\Controllers\Admin\UsersController::class, 'index'])->name('admin.users');
+    Route::post('/userslist', [App\Http\Controllers\Admin\UsersController::class, 'userslist'])->name('admin.userslist');
+    Route::post('/users/save', [App\Http\Controllers\Admin\UsersController::class, 'save'])->name('save.users');
+    Route::get('/users/edit', [App\Http\Controllers\Admin\UsersController::class, 'edit'])->name('edit.users');
+    Route::post('/users/delete', [App\Http\Controllers\Admin\UsersController::class, 'delete'])->name('delete.users');
 });
