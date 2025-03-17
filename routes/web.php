@@ -30,4 +30,12 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::post('/course/save', [App\Http\Controllers\Admin\CourseController::class, 'save'])->name('save.course');
     Route::get('/course/edit', [App\Http\Controllers\Admin\CourseController::class, 'edit'])->name('edit.course');
     Route::post('/course/delete', [App\Http\Controllers\Admin\CourseController::class, 'delete'])->name('delete.course');
+
+    //cms
+    Route::get('/cms', [App\Http\Controllers\Admin\CmsController::class, 'index'])->name('admin.cms');
+    Route::post('/cms/save', [App\Http\Controllers\Admin\CmsController::class, 'save'])->name('admin.cms.save');
+    Route::post('/cms/list', [App\Http\Controllers\Admin\CmsController::class, 'list'])->name('admin.cms.list');
+    Route::get('/cms/edit/{id}', [App\Http\Controllers\Admin\CmsController::class, 'edit'])->name('admin.cms.edit');
+    Route::delete('/cms/delete/{id}', [App\Http\Controllers\Admin\CmsController::class, 'delete'])->name('admin.cms.delete');
+    Route::post('/cms/check-slug', [App\Http\Controllers\Admin\CmsController::class, 'check_slug'])->name('admin.cms.check-slug');
 });

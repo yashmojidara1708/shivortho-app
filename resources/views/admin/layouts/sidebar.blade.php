@@ -23,6 +23,12 @@
             'label' => 'Courses',
             'roles' => null,
         ],
+        [
+            'route' => 'admin.cms',
+            'icon' => 'fa-solid fa-cogs',
+            'label' => 'Cms',
+            'roles' => null,
+        ],
     ];
 
     // Separate the "Dashboard" menu item
