@@ -3,6 +3,7 @@ $(document).ready(function() {
     // Initialize CKEditor
     CKEDITOR.replace('description', {
         allowedContent: true,
+        versionCheck: false,
     });
 
     $.ajaxSetup({

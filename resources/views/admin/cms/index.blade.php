@@ -33,6 +33,7 @@
         $(document).ready(function() {
             CKEDITOR.replace('description', {
                 allowedContent: true,
+                versionCheck: false,
             });
 
             $('#title').on('input', function() {

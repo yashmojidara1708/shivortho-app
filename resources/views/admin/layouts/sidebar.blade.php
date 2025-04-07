@@ -29,6 +29,12 @@
             'label' => 'Cms',
             'roles' => null,
         ],
+        [
+            'route' => 'admin.settings',
+            'icon' => 'fa-solid fa-cogs',
+            'label' => 'Settings',
+            'roles' => null,
+        ],
     ];
 
     // Separate the "Dashboard" menu item

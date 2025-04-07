@@ -8,7 +8,7 @@ use Inertia\Inertia;
 
 Auth::routes(['reset' => false, 'verify' => false, 'confirm' => false]);
 
-Route::any('/', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('admin');
+Route::any('/admin', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('admin');
 Route::any('/admin/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::any('/check/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
 Route::any('/admin/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('admin.logout');
@@ -38,4 +38,11 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::get('/cms/edit/{id}', [App\Http\Controllers\Admin\CmsController::class, 'edit'])->name('admin.cms.edit');
     Route::delete('/cms/delete/{id}', [App\Http\Controllers\Admin\CmsController::class, 'delete'])->name('admin.cms.delete');
     Route::post('/cms/check-slug', [App\Http\Controllers\Admin\CmsController::class, 'check_slug'])->name('admin.cms.check-slug');
+
+
+    // settings
+    Route::get('/settings', [App\Http\Controllers\Admin\SettingsController::class, 'index'])->name('admin.settings');
+    Route::post('/settings/save', [App\Http\Controllers\Admin\SettingsController::class, 'save'])->name('save.settings');
+    Route::get('/settings/remove_logo', [App\Http\Controllers\Admin\SettingsController::class, 'remove_logo'])->name('remove_logo.settings');
+    Route::get('/settings/remove_favicon', [App\Http\Controllers\Admin\SettingsController::class, 'remove_favicon'])->name('remove_favicon.settings');
 });
