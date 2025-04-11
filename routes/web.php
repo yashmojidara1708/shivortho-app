@@ -8,6 +8,9 @@ use Inertia\Inertia;
 
 Auth::routes(['reset' => false, 'verify' => false, 'confirm' => false]);
 
+Route::any('/', [App\Http\Controllers\FrontEnd\MainController::class, 'index'])->name('home');
+
+
 Route::any('/admin', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('admin');
 Route::any('/admin/login', [App\Http\Controllers\Auth\LoginController::class, 'showLoginForm'])->name('admin.login');
 Route::any('/check/login', [App\Http\Controllers\Auth\LoginController::class, 'login']);
