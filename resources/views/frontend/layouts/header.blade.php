@@ -6,15 +6,30 @@
                     <ul class="top-bar-info list-inline-item pl-0 mb-0">
                         {{-- <li class="list-inline-item"><a href="mailto:support@gmail.com"><i
                                     class="icofont-support-faq mr-2"></i>support@novena.com</a></li> --}}
-                        <li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>202, 2nd Floor Aishwarya Complex, Opp. Shell Petrol Pump,
-                            Near Jawahar Chowk, Maninagar, Ahmedabad-380008.</li>
+                        <li class="list-inline-item"><i class="icofont-location-pin mr-2"></i>
+                            {{ get_setting('address') }}</br>
+                            @if (get_setting('city') != '' ? get_setting('city') : '')
+                                {{ '' . get_setting('city') }}
+                            @endif
+                            @if (get_setting('zip_code') != '' ? get_setting('zip_code') : '')
+                                {{ '-' . get_setting('zip_code') }}
+                            @endif
+                        </li>
                     </ul>
                 </div>
                 <div class="col-lg-4">
                     <div class="text-lg-right top-right-bar mt-2 mt-lg-0">
                         <a href="tel:+23-345-67890">
                             <span>Call Now : </span>
-                            <span class="h4">+91 8799614263</span>
+                            <span class="h4"> +91
+                                @if (!empty(get_setting('phone_number')))
+                                    @if (get_setting('phone_number'))
+                                        {{ get_setting('phone_number') }}
+                                    @endif
+                                @else
+                                    8799614263
+                                @endif
+                            </span>
                         </a>
                     </div>
                 </div>
@@ -24,8 +39,15 @@
     <nav class="navbar navbar-expand-lg navigation" id="navbar">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('assets/admin/theme/img/Shiv_logo.png') }}" alt="" class="img-fluid"
-                    style="height: 80px;">
+                @if (!empty(get_setting('logo')))
+                    @if (get_setting('logo'))
+                        <img class="" src="{{ asset('logos/' . get_setting('logo')) }}" alt="logo2"
+                            style="height: 80px;">
+                    @endif
+                @else
+                    <img src="{{ asset('assets/admin/theme/img/Shiv_logo.png') }}" alt="" class="img-fluid"
+                        style="height: 80px;">
+                @endif
             </a>
 
             <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarmain"

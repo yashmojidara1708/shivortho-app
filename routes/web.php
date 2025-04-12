@@ -48,4 +48,11 @@ Route::middleware(['admin'])->prefix('admin')->group(function () {
     Route::post('/settings/save', [App\Http\Controllers\Admin\SettingsController::class, 'save'])->name('save.settings');
     Route::get('/settings/remove_logo', [App\Http\Controllers\Admin\SettingsController::class, 'remove_logo'])->name('remove_logo.settings');
     Route::get('/settings/remove_favicon', [App\Http\Controllers\Admin\SettingsController::class, 'remove_favicon'])->name('remove_favicon.settings');
+
+    // admin Contact
+    Route::get('/contacts', [App\Http\Controllers\Admin\ContactsController::class, 'index'])->name('admin.contacts');
+    Route::get('/data/contacts', [App\Http\Controllers\Admin\ContactsController::class, 'getData'])->name('getdata.contacts');
 });
+
+
+Route::any('/contact/save', [App\Http\Controllers\FrontEnd\ContactController::class, 'send'])->name('send');

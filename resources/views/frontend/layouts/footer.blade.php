@@ -5,8 +5,15 @@
             <div class="col-lg-4 mr-auto col-sm-6">
                 <div class="widget mb-5 mb-lg-0">
                     <div class="logo mb-4">
-                        <img src="{{ asset('assets/admin/theme/img/Shiv_logo.png') }}" alt="" class="img-fluid"
-                            style="width: 100px;">
+                        @if (!empty(get_setting('logo')))
+                            @if (get_setting('logo'))
+                                <img class="" src="{{ asset('logos/' . get_setting('logo')) }}" alt="logo2"
+                                    style="height: 100px;">
+                            @endif
+                        @else
+                            <img src="{{ asset('assets/admin/theme/img/Shiv_logo.png') }}" alt=""
+                                class="img-fluid" style="height: 100px;">
+                        @endif
                     </div>
                     <p>Tempora dolorem voluptatum nam vero assumenda voluptate, facilis ad eos obcaecati tenetur
                         veritatis eveniet distinctio possimus.</p>
@@ -70,7 +77,15 @@
                             <i class="icofont-support mr-3"></i>
                             <span class="h6 mb-0">Mon to Sat : 10:00 AM - 07:00 PM</span>
                         </div>
-                        <h4 class="mt-2"><a href="tel:+91 8799614263">+91 8799614263</a></h4>
+                        <h4 class="mt-2"><a href="tel:+91 8799614263">+91
+                                @if (!empty(get_setting('phone_number')))
+                                    @if (get_setting('phone_number'))
+                                        {{ get_setting('phone_number') }}
+                                    @endif
+                                @else
+                                    8799614263
+                                @endif
+                            </a></h4>
                     </div>
                 </div>
             </div>
@@ -104,31 +119,3 @@
         </div>
     </div>
 </footer>
-
-
-
-<!--
-Essential Scripts
-=====================================-->
-
-
-<!-- Main jQuery -->
-<script src="{{ asset('assets/frontend/plugins/jquery/jquery.js') }}"></script>
-<!-- Bootstrap 4.3.2 -->
-<script src="{{ asset('assets/frontend/plugins/bootstrap/js/popper.js') }}"></script>
-<script src="{{ asset('assets/frontend/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/frontend/plugins/counterup/jquery.easing.js') }}"></script>
-<!-- Slick Slider -->
-<script src="{{ asset('assets/frontend/plugins/slick-carousel/slick/slick.min.js') }}"></script>
-<!-- Counterup -->
-<script src="{{ asset('assets/frontend/plugins/counterup/jquery.waypoints.min.js') }}"></script>
-
-<script src="{{ asset('assets/frontend/plugins/shuffle/shuffle.min.js') }}"></script>
-<script src="{{ asset('assets/frontend/plugins/counterup/jquery.counterup.min.js') }}"></script>
-<!-- Google Map -->
-<script src="{{ asset('assets/frontend/plugins/google-map/map.js') }}"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkeLMlsiwzp6b3Gnaxd86lvakimwGA6UA&callback=initMap">
-</script>
-
-<script src="{{ asset('assets/frontend/js/script.js') }}"></script>
-<script src="{{ asset('assets/frontend/js/contact.js') }}"></script>

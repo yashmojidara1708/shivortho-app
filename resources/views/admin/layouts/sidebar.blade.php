@@ -35,6 +35,12 @@
             'label' => 'Settings',
             'roles' => null,
         ],
+        [
+            'route' => 'admin.contacts',
+            'icon' => 'fa-solid fa-envelope',
+            'label' => 'Contact Us',
+            'roles' => null,
+        ],
     ];
 
     // Separate the "Dashboard" menu item

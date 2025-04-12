@@ -10,13 +10,22 @@
                     <div class="card-body">
                         <div class="app-brand">
                             <span class="app-brand-logo demo" style="margin-left: 25%">
-                                <img src="{{ asset('assets/admin/theme/img/logo.png') }}" alt="">
+                                {{-- <img src="{{ asset('assets/admin/theme/img/logo.png') }}" alt=""> --}}
+                                @if (!empty(get_setting('logo')))
+                                    @if (get_setting('logo'))
+                                        <img class="" src="{{ asset('logos/' . get_setting('logo')) }}" alt="logo2"
+                                            style="height: 80px;">
+                                    @endif
+                                @else
+                                    <img src="{{ asset('assets/admin/theme/img/Shiv_logo.png') }}" alt=""
+                                        class="img-fluid" style="height: 80px;">
+                                @endif
                             </span>
                             </a>
                         </div>
                         {{-- <h4 class="mb-3 text-center">Admin Login</h4> --}}
                         <div class="card-body">
-                            <div id="welcomeMessage" class="text-center">
+                            <div id="welcomeMessage" class="text-center" style="color: #ee8a19">
                                 Welcome Back, Admin Please login access to our dashboard.
                             </div>
 
@@ -47,7 +56,7 @@
                                         </div>
 
                                         <div class="mb-3">
-                                            <button class="btn btn-primary d-grid w-100" type="submit">Login</button>
+                                            <button class="btn d-grid w-100 text-white" type="submit" style="background-color: #ee8a19">Login</button>
                                         </div>
                                     </form>
                                 </div>

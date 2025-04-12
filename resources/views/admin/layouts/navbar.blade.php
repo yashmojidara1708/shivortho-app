@@ -1,11 +1,25 @@
 <!-- Logo -->
 <div class="header-left">
-    <a href="index.html" class="logo">
-        <img src="{{ asset('assets/admin/theme/img/logo.png') }}" alt="Logo">
-    </a>
-    <a href="index.html" class="logo logo-small">
-        <img src="{{ asset('assets/admin/theme/img/logo-small.png') }}" alt="Logo" width="30" height="30">
-    </a>
+    @if (!empty(get_setting('logo')))
+        @if (get_setting('logo'))
+            <img class="logo" src="{{ asset('logos/' . get_setting('logo')) }}" alt="logo2" style="height: 97%;">
+        @endif
+    @else
+        <img src="{{ asset('assets/admin/theme/img/Shiv_logo.png') }}" alt="" class="img-fluid"
+            style="height: 98%;">
+    @endif
+    @if (!empty(get_setting('favicon')))
+        @if (get_setting('favicon') != '' ? get_setting('favicon') : '')
+        <a href="index.html" class="logo logo-small">
+            <img src="{{ asset('favicons/' . get_setting('favicon')) }}" alt="Logo" width="30" height="40">
+        </a>
+        @endif
+    @else
+        <a href="index.html" class="logo logo-small">
+            <img src="{{ asset('assets/admin/theme/img/logo-small.png') }}" alt="Logo" width="30"
+                height="40">
+        </a>
+    @endif
 </div>
 <!-- /Logo -->
 
@@ -22,93 +36,6 @@
 <!-- Header Right Menu -->
 <ul class="nav user-menu">
 
-    <!-- Notifications -->
-    {{-- <li class="nav-item dropdown noti-dropdown">
-        <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-            <i class="fe fe-bell"></i> <span class="badge badge-pill">3</span>
-        </a>
-        <div class="dropdown-menu notifications">
-            <div class="topnav-dropdown-header">
-                <span class="notification-title">Notifications</span>
-                <a href="javascript:void(0)" class="clear-noti"> Clear All </a>
-            </div>
-            <div class="noti-content">
-                <ul class="notification-list">
-                    <li class="notification-message">
-                        <a href="#">
-                            <div class="media">
-                                <span class="avatar avatar-sm">
-                                    <img class="avatar-img rounded-circle" alt="User Image"
-                                        src="assets/img/doctors/doctor-thumb-01.jpg">
-                                </span>
-                                <div class="media-body">
-                                    <p class="noti-details"><span class="noti-title">Dr. Ruby Perrin</span>
-                                        Schedule <span class="noti-title">her appointment</span></p>
-                                    <p class="noti-time"><span class="notification-time">4 mins ago</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="notification-message">
-                        <a href="#">
-                            <div class="media">
-                                <span class="avatar avatar-sm">
-                                    <img class="avatar-img rounded-circle" alt="User Image"
-                                        src="assets/img/patients/patient1.jpg">
-                                </span>
-                                <div class="media-body">
-                                    <p class="noti-details"><span class="noti-title">Charlene Reed</span>
-                                        has booked her appointment to <span class="noti-title">Dr. Ruby
-                                            Perrin</span></p>
-                                    <p class="noti-time"><span class="notification-time">6 mins ago</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="notification-message">
-                        <a href="#">
-                            <div class="media">
-                                <span class="avatar avatar-sm">
-                                    <img class="avatar-img rounded-circle" alt="User Image"
-                                        src="assets/img/patients/patient2.jpg">
-                                </span>
-                                <div class="media-body">
-                                    <p class="noti-details"><span class="noti-title">Travis Trimble</span>
-                                        sent a amount of $210 for his <span
-                                            class="noti-title">appointment</span></p>
-                                    <p class="noti-time"><span class="notification-time">8 mins ago</span>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                    <li class="notification-message">
-                        <a href="#">
-                            <div class="media">
-                                <span class="avatar avatar-sm">
-                                    <img class="avatar-img rounded-circle" alt="User Image"
-                                        src="assets/img/patients/patient3.jpg">
-                                </span>
-                                <div class="media-body">
-                                    <p class="noti-details"><span class="noti-title">Carl Kelly</span>
-                                        send a message <span class="noti-title"> to his doctor</span></p>
-                                    <p class="noti-time"><span class="notification-time">12 mins
-                                            ago</span></p>
-                                </div>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="topnav-dropdown-footer">
-                <a href="#">View all Notifications</a>
-            </div>
-        </div>
-    </li> --}}
-    <!-- /Notifications -->
-
     <!-- User Menu -->
     <li class="nav-item dropdown has-arrow">
         <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
@@ -123,8 +50,8 @@
                         class="avatar-img rounded-circle">
                 </div>
                 <div class="user-text">
-                    <h6>{{ isset($currentloginName) ? $currentloginName : '' }}</h6>
-                    <p class="text-muted mb-0">{{ isset($currentloginRole) ? $currentloginRole : '' }}</p>
+                    <h6>Admin</h6>
+                    <p class="text-muted mb-0">Global Admin</p>
                 </div>
             </div>
             {{-- <a class="dropdown-item" href="profile.html">My Profile</a> --}}

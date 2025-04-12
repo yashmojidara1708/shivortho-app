@@ -6,11 +6,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="Orbitor,business,company,agency,modern,bootstrap4,tech,software">
     <meta name="author" content="themefisher.com">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Shivam Ortho</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" />
+    {{-- <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico" /> --}}
+
+    @if (!empty(get_setting('favicon')))
+        @if (get_setting('favicon') != '' ? get_setting('favicon') : '')
+            <link rel="icon" type="image/png" sizes="56x56"
+                href="{{ asset('favicons/' . get_setting('favicon')) }}">
+        @endif
+    @else
+        <link rel="icon" type="image/png" sizes="56x56" alt="!!">
+    @endif
 
     <!-- bootstrap.min css -->
     <link rel="stylesheet" href="{{ asset('assets/frontend/plugins/bootstrap/css/bootstrap.min.css') }}">
@@ -49,9 +59,9 @@
 
                         <p class="mb-4 pr-5">A repudiandae ipsam labore ipsa voluptatum quidem quae laudantium quisquam
                             aperiam maiores sunt fugit, deserunt rem suscipit placeat.</p>
-                        <div class="btn-container ">
+                        <div class="btn-container">
                             <a href="#contact" class="btn btn-main btn-round-full">Make a appoinment <i
-                                class="icofont-simple-right ml-2  "></i></a>
+                                    class="icofont-simple-right ml-2  "></i></a>
                         </div>
                     </div>
                 </div>
@@ -95,7 +105,14 @@
                                 <i class="icofont-support"></i>
                             </div>
                             <span>Emegency Cases</span>
-                            <h4 class="mb-3">+91 8799614263</h4>
+                            <h4 class="mb-3">+91
+                                @if (!empty(get_setting('phone_number')))
+                                    @if (get_setting('phone_number'))
+                                        {{ get_setting('phone_number') }}
+                                    @endif
+                                @else
+                                    8799614263
+                                @endif</h4>
                             <p>Get ALl time support for emergency.We have introduced the principle of family
                                 medicine.Get Conneted with us for any urgency .</p>
                         </div>
@@ -360,7 +377,8 @@
                             <h4>Very friendly and reliable service!</h4>
                             <span>Priya Menon</span>
                             <p>
-                                I had a smooth experience with their team. They were always ready to help and made sure everything was taken care of. Felt really comfortable throughout the process.
+                                I had a smooth experience with their team. They were always ready to help and made sure
+                                everything was taken care of. Felt really comfortable throughout the process.
                             </p>
                         </div>
                     </div>
@@ -375,7 +393,8 @@
                             <h4>Truly professional and fast!</h4>
                             <span>Amit Verma</span>
                             <p>
-                                I am impressed by their efficiency and professionalism. Everything was handled quickly and with proper updates. Great job by the entire team!
+                                I am impressed by their efficiency and professionalism. Everything was handled quickly
+                                and with proper updates. Great job by the entire team!
                             </p>
                         </div>
 
@@ -392,7 +411,8 @@
                             <h4>Great service at a reasonable price!</h4>
                             <span>Neha Desai</span>
                             <p>
-                                It's hard to find such quality service these days. They delivered exactly what was promised and did it within budget. Totally worth it!
+                                It's hard to find such quality service these days. They delivered exactly what was
+                                promised and did it within budget. Totally worth it!
                             </p>
                         </div>
 
@@ -409,7 +429,8 @@
                             <h4>Had a very smooth experience!</h4>
                             <span>Karan Malhotra</span>
                             <p>
-                                From start to finish, everything went perfectly. Communication was clear and the team was super cooperative. Would definitely recommend them to others.
+                                From start to finish, everything went perfectly. Communication was clear and the team
+                                was super cooperative. Would definitely recommend them to others.
                             </p>
                         </div>
                         <i class="icofont-quote-right"></i>
@@ -429,7 +450,14 @@
                         <div class="contact-block mb-4 mb-lg-0">
                             <i class="icofont-live-support"></i>
                             <h5>Call Us</h5>
-                            +91 8799614263
+                            +91
+                            @if (!empty(get_setting('phone_number')))
+                                @if (get_setting('phone_number'))
+                                    {{ get_setting('phone_number') }}
+                                @endif
+                            @else
+                                8799614263
+                            @endif
                         </div>
                     </div>
                     <div class="col-lg-4 col-sm-6 col-md-6">
@@ -443,80 +471,22 @@
                         <div class="contact-block mb-4 mb-lg-0" style="padding:24px 25px;">
                             <i class="icofont-location-pin"></i>
                             <h5>Location</h5>
-                            202, 2nd Floor Aishwarya Complex, Opp. Shell Petrol Pump,
-                            Near Jawahar Chowk, Maninagar, Ahmedabad-380008.
+                            {{ get_setting('address') }}
+                            @if (get_setting('city') != '' ? get_setting('city') : '')
+                                {{ '' . get_setting('city') }}
+                            @endif
+                            @if (get_setting('zip_code') != '' ? get_setting('zip_code') : '')
+                                {{ '-' . get_setting('zip_code') }}
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="contact-form-wrap section">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <div class="section-title text-center">
-                            <h2 class="text-md mb-2">Contact us</h2>
-                            <div class="divider mx-auto my-4"></div>
-                            <p class="mb-5">Laboriosam exercitationem molestias beatae eos pariatur, similique,
-                                excepturi mollitia sit perferendis maiores ratione aliquam?</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <form id="contact-form" class="contact__form " method="post" action="mail.php">
-                            <!-- form message -->
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="alert alert-success contact__msg" style="display: none"
-                                        role="alert">
-                                        Your message was sent successfully.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input name="name" id="name" type="text" class="form-control"
-                                            placeholder="Your Full Name">
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input name="email" id="email" type="email" class="form-control"
-                                            placeholder="Your Email Address">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input name="subject" id="subject" type="text" class="form-control"
-                                            placeholder="Your Query Topic">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="form-group">
-                                        <input name="phone" id="phone" type="text" class="form-control"
-                                            placeholder="Your Phone Number">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="form-group-2 mb-4">
-                                <textarea name="message" id="message" class="form-control" rows="8" placeholder="Your Message"></textarea>
-                            </div>
-
-                            <div class="text-center">
-                                <input class="btn btn-main btn-round-full" name="submit" type="submit"
-                                    value="Send Messege"></input>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
+        {{-- contac us --}}
+        @include('frontend.layouts.contact')
+        {{-- contact us end  --}}
         {{-- location --}}
         <div class="google-map p-5">
             <iframe
@@ -529,12 +499,46 @@
 
 
     @include('frontend.layouts.footer')
-    
-    <!-- Essential Scripts -->
-    <script src="{{ asset('assets/frontend/plugins/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('assets/frontend/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+    <script type="text/javascript">
+        var BASE_URL = "{{ url('/') }}";
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+            }
+        });
+    </script>
+
+    <!-- Main jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap 4.3.2 -->
+    <script src="{{ asset('assets/frontend/plugins/bootstrap/js/popper.js') }}"></script>
+    <script src="{{ asset('assets/frontend/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/frontend/plugins/counterup/jquery.easing.js') }}"></script>
+    <!-- Slick Slider -->
     <script src="{{ asset('assets/frontend/plugins/slick-carousel/slick/slick.min.js') }}"></script>
-    
+    <!-- Counterup -->
+    <script src="{{ asset('assets/frontend/plugins/counterup/jquery.waypoints.min.js') }}"></script>
+
+    {{-- <script src="{{ asset('assets/frontend/plugins/shuffle/shuffle.min.js') }}"></script> --}}
+    <script src="{{ asset('assets/frontend/plugins/counterup/jquery.counterup.min.js') }}"></script>
+     {{-- toastr --}}
+     <link rel="stylesheet" href="{{ asset('assets/admin/theme/cdnFiles/toastr.css') }}" />
+     <script src="{{ asset('assets/admin/theme/cdnFiles/toastr.min.js') }}"></script>
+
+    <!-- Essential Scripts -->
+    <script src="{{ asset('assets/frontend/plugins/slick-carousel/slick/slick.min.js') }}"></script>
+    <script src="{{ asset('assets/admin/theme/cdnFiles/jquery.validate.min.js') }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/jquery.validation/1.19.5/jquery.validate.min.js"></script> --}}
+    <script src="{{ asset('assets/frontend/plugins/google-map/map.js') }}"></script>
+    <script src="{{ asset('assets/frontend/js/script.js') }}"></script>
+    @yield('frontend-footer')
     <!-- Main Script -->
     <script>
         $(document).ready(function() {
@@ -547,8 +551,7 @@
                 adaptiveHeight: true,
                 autoplay: true,
                 autoplaySpeed: 3000,
-                responsive: [
-                    {
+                responsive: [{
                         breakpoint: 992,
                         settings: {
                             slidesToShow: 1
@@ -562,15 +565,15 @@
                     }
                 ]
             });
-            
+
             // Fix for mobile menu
             $('.navbar-toggler').on('click', function() {
                 $(this).toggleClass('active');
             });
-            
+
             // Smooth scrolling for anchor links
             $('a[href*="#"]').not('[href="#"]').not('[href="#0"]').click(function(event) {
-                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && 
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') &&
                     location.hostname == this.hostname) {
                     var target = $(this.hash);
                     target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
@@ -582,13 +585,14 @@
                     }
                 }
             });
-            
+
             // Fix for responsive images
             $('img').each(function() {
                 if (!$(this).hasClass('img-fluid')) {
                     $(this).addClass('img-fluid');
                 }
             });
+
         });
     </script>
 </body>
